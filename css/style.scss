@@ -1,0 +1,746 @@
+@import "nullstyle.scss";
+
+$color-h2: #1E1D2E;
+$color-p: #232056;
+$color-h3-h4: #232056;
+$color-h5: #1B1C1E;
+
+%center_col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+%btn {
+    background: #FFA438;
+    border-radius: 8px;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 500;
+    color: #ffffff;
+    padding: 10px 45px;
+}
+
+%border-bottom {
+    box-shadow: inset 0px -1px 0px #EEF2F4;
+}
+
+@keyframes show-header {
+    0% {
+        opacity: 0;
+        top: -100px;
+    }
+    100% {
+        opacity: 1;
+        top: 0;
+    }
+}
+
+@keyframes show-sticky {
+    0% {
+        opacity: 0;
+        bottom: -100px;
+    }
+    100% {
+        opacity: 1;
+        bottom: 0;
+    }
+}
+
+body {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+}
+
+h2 {
+    font-size: 22px;
+    line-height: 24px;
+    font-weight: 500;
+    color: $color-h2
+}
+
+h3, h4 {
+    color: $color-h3-h4;
+    font-weight: 500;
+}
+
+h3 {
+    font-size: 22px;
+    line-height: 24px;
+    margin-bottom: 12px;
+}
+
+h4 {
+    font-weight: 600;
+}
+
+h5 {
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: normal;
+    color: $color-h5;
+}
+
+h6 {
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 500;
+}
+
+a {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: normal;
+    color: #606483;
+
+}
+
+p {
+    font-size: 15px;
+    line-height: 20px;
+}
+
+.main-content {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 740px;
+    padding: 0 15px;
+}
+
+.aside-content {
+    display: none;
+}
+
+// main {
+//     margin: 0 auto;
+//     max-width: 740px;
+//     padding: 0 15px;
+// }
+
+.btn {
+    @extend %btn;
+}
+
+.btn:hover {
+    background: #FF9316;
+}
+
+.scroll-header {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+
+    background: #FFFFFF;
+
+    max-width: 740px;
+    width: 100%;
+    
+    @extend %border-bottom;
+
+    .back-to {
+        padding: 12px 10px;
+    }
+    .buttons {
+        display: flex;
+        justify-content: flex-end;
+
+        li {
+            padding: 12px 10px;
+        }
+    }
+}
+
+.scroll-header-fixed {
+    position: fixed;
+    top: 0;
+    animation-name: show-header;
+    animation-duration: 0.5s;
+    z-index: 11;
+}
+
+.scroll-shown {
+    display: none;
+    justify-content: space-around;
+    align-items: center;
+
+    img {
+        border-radius: 50%;
+    }
+
+    .profile-info {
+        margin-left: 8px;
+
+        &__name {
+            font-size: 14px;
+            line-height: 20px;
+            font-weight: 500;
+        }
+        &__vacancy {
+            font-size: 13px;
+            line-height: 18px;
+            font-weight: normal;
+
+            margin-bottom: 0;
+        }
+    }
+}
+
+.candidate-person {
+    text-align: center;
+    margin-bottom: 17px;
+
+    .profile-photo {
+        position: relative;
+        width: 120px;
+        margin: 10px auto;
+        border-radius: 50%;
+        img {
+            border-radius: 50%;
+        }
+    }
+    .is-online::before {
+        content: "";
+        position: absolute;
+        bottom: 3px;
+        left: 71%;
+        width: 7px;
+        height: 7px;
+        border: 1px solid #ffffff;
+        border-radius: 50%;
+        background-color: #6BBD64;
+    }
+    p {
+        color: $color-h5;
+        margin: 6px 0;
+    }
+    .updated {
+        font-size: 14px;
+        line-height: 20px;
+        color: #8999A5;
+
+        time {
+            color: #6BBD64;
+        }
+    }
+}
+
+.candidate-offer {
+    @extend %center_col;
+
+    .offer-button {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 8px 0;
+
+        &:hover {
+            .like {
+                background: rgba(236, 95, 107, 0.1);
+                svg path {
+                    stroke: #EC5F6B;
+                }
+            }
+        }
+    }
+
+    .offer-button.sticky {
+        position: fixed;
+        bottom: 0;
+        animation-name: show-sticky;
+        animation-duration: 0.8s;
+        z-index: 11;
+    }
+
+    .offer-btn {
+        margin-right: 16px;
+    }
+
+    .like {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background-color: #EEF2F4;
+
+        svg {
+            vertical-align: middle;
+        }
+    }
+
+    .offer-interview {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 10px;
+        margin-top: 18px;
+        @extend %border-bottom;
+
+        .interview-img {
+            width: 47px;
+            height: 44px;
+        }
+
+        .offer-interview__middle {
+            margin: 0 12px;
+        }
+
+        p {
+            font-size: 12px;
+            line-height: 14px;
+            color: #606483;
+            margin-top: 4px;
+        }
+
+        .btn-to {
+            background: #F3F6F8;
+            border-radius: 8px;
+
+            img {
+                padding: 15px 18px;
+            }
+        }
+    }
+}
+
+.candidate-conditions {
+    @extend %center_col;
+    align-items: flex-start;
+    margin-top: 40px;
+
+    .salary {
+        color: $color-h5;
+        font-size: 16px;
+        line-height: 22px;
+        font-weight: 600;
+        margin-bottom: 12px;
+    }
+
+    .conditions {
+        dt {
+            color: #606483;
+        }
+        dd {
+                color: $color-h3-h4;
+                font-size: 16px;
+                line-height: 24px;
+                margin-bottom: 16px;
+                margin-top: 4px;
+                li {
+                font-size: 16px;
+                line-height: 24px;
+                list-style: disc;
+                list-style-position: inside;
+                margin-bottom: 0;
+            }
+        }
+        
+        .activity-field {
+            font-size: 18px;
+            line-height: 22px;
+            color: $color-h3-h4;
+            
+        }
+    }
+
+}
+
+.candidate-experience {
+    h5 {
+        padding: 10px;
+        margin-bottom: 28px;
+
+        background: #FAFCFD;
+        @extend %border-bottom;
+    }
+
+    .experience-duration {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 16px;
+
+        p {
+            font-size: 14px;
+        }
+
+        .experience-duration__years {
+            font-weight: 500;
+            color: $color-p;
+        }
+
+        .experience-duration__summary {
+            color: #606483;
+        }
+    }
+
+    .experience-place {
+        color: $color-p;
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .experience-vacancy {
+        background-color: transparent;
+        box-shadow: none;
+        padding: 0;
+        margin-top: 16px;
+        margin-bottom: 0;
+        color: $color-h3-h4;
+    }
+
+    .experience-about {
+        dt {
+            font-size: 18px;
+            line-height: 24px;
+            font-weight: 500;
+            color: $color-p;
+            margin-bottom: 10px;
+            margin-top: 16px;
+        }
+
+        dd {
+            color: #606483;
+            display: list-item;
+            list-style-type: disc;
+            margin-left: 17px;
+        }
+
+        .btn-more {
+            border: none;
+            background-color: transparent;
+            color: #5FB6E7;
+            cursor: pointer;
+        }
+          
+        .more {
+        display: none;
+        }
+        
+        .dots {
+        color: #5FB6E7;
+        }
+    }
+}
+
+.candidate-portfolio {
+    margin-top: 30px;
+    h5 {
+        padding: 10px;
+        margin-bottom: 20px;
+
+        background: #FAFCFD;
+        @extend %border-bottom;
+    }
+
+    .wrapper {
+        padding: 30px;
+        min-height: 100%;
+        max-width: 710px;
+        overflow: hidden;
+    }
+    
+    .image-slider {
+        padding: 30px 0 70px 0;
+        position: relative;
+    }
+
+    .swiper-wrapper {
+        align-items: center;
+    }
+    
+    .image-slider__image {
+        text-align: center;
+    }
+    
+    .image-slider__image img {
+        max-width: 100%;
+    }
+    
+    /* Стрелки */
+    .image-slider .swiper-button-prev::after,
+    .image-slider .swiper-button-next::after {
+        color: rgb(148, 148, 148);
+        font-size: 20px;
+    }
+    
+    /* Пагинация */
+    .image-slider .swiper-pagination {
+        bottom: 0;
+    }
+       
+    
+    /* Фракция */
+    .image-slider .swiper-pagination-fraction {
+        font-size: 18px;
+        color: rgb(148, 148, 148);
+        margin-bottom: 1%;
+    }
+    
+    .image-slider .swiper-pagination-progressbar-fill {
+        background-color: #7a956b;
+    }
+    
+    /* Скролл */
+    .image-slider .swiper-scrollbar-drag {
+        cursor: pointer;
+        background-color: #7a956b;
+    }
+    
+    /* Автоширина */
+     .image-slider .swiper-slide {
+         width: auto;
+     }    
+}
+
+.candidate-history {
+    margin-top: 16px;
+    padding-bottom: 60px;
+    h5 {
+        padding: 15px;
+        margin-bottom: 15px;
+
+        font-family: Source Sans Pro;
+        font-size: 16px;
+        line-height: 20px;
+
+        text-transform: uppercase;
+
+        background: #FAFCFD;
+        @extend %border-bottom;
+    }
+
+    &__item {
+        display: flex;
+        padding: 10px 0;
+       
+    }
+    
+    &__date {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                width: 24px;
+                height: 25px;
+            }
+
+            time {
+                font-size: 13px;
+                line-height: 20px;
+                font-weight: 500;
+            }
+        }
+
+    &__actions {
+        border-left: 3px solid;
+        padding-left: 10px;
+        margin-left: 10px;
+    }
+    
+    &__actions.video {
+        border-color: #5FB6E7;
+    }
+
+    &__actions.response {
+        border-color: #FFA438;
+    }
+}
+
+.popup {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(229, 229, 229, 0.8);
+    top: 0;
+    left: 0;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.8s ease 0s;
+
+    z-index: 11;
+
+    &__body {
+        min-height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__content {
+        transition: all 0.8s ease 0s;
+        opacity: 0;
+        transform: perspective(400px) translate(0px, -100%) rotateX(45deg);
+    }
+    .popup-note {
+    width: 100vw;
+    max-width: 442px;
+    padding: 24px 9px;
+
+    background-color: #fff;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;  
+
+    h6 {
+        @extend %border-bottom;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+    }
+
+    textarea {
+        width: 100%;
+    }
+
+    .popup__btns {
+        display: flex;
+        justify-content: center;
+
+        .popup-cancel {
+            background: #EEF2F4;
+            color: #606483;
+            padding: 10px 0;
+            width: 50%;
+            margin-right: 10px;
+        }
+
+        .popup-save {
+            padding: 10px 0;
+            width: 50%
+        }
+    }
+}
+    .popup-offer {
+        width: 100vw;
+        max-width: 442px;
+        padding: 24px 9px;
+
+        background-color: transparent;
+
+        .offer-items {
+            background-color: #fff;
+            border-radius: 20px;
+            margin-bottom: 10px;
+
+            .offer__item {
+                padding: 16px;
+                padding-left: 56px;
+                @extend %border-bottom;
+                position: relative;
+
+                &:before {
+                    content: '';
+                    position: absolute;
+                    top: 15px;
+                    left: 20px;
+                    width: 24px;
+                    height: 24px;
+                    background-image: url(../images/icons/offer-icons.png);
+                    background-repeat: no-repeat;
+                    background-position: 0 0;
+                }    
+            }
+            .vidinter.offer__item::before{
+                background-position: 0 -35px;
+            }
+
+            .offinter.offer__item::before{
+                background-position: 0 -72px;
+            }
+
+            .phoninter.offer__item::before{
+                background-position: 0 -107px;
+            }
+
+            .test.offer__item::before{
+                background-position: 0 -143px;
+            }
+
+            .joboffer.offer__item::before{
+                background-position: 0 -179px;
+            }
+
+            .job.offer__item::before{
+                background-position: 0 -215px;
+            }
+        }
+
+        .popup__btns {
+            background-color: #fff;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+
+            .popup-cancel {
+                font-size: 16px;
+                line-height: 22px;
+                font-weight: 600;
+                color: #334866;
+                padding: 10px 0;
+                width: 100%;
+            }
+        }
+    }
+}
+
+.popup.open {
+    opacity: 1;
+    visibility: visible;
+    
+    .popup__content {
+        transform: perspective(400px) translate(0px, 0%) rotateX(0deg);
+        opacity: 1;
+    }
+}
+
+@media (min-width: 992px) {
+    .aside-content {
+        display: block;
+
+        .offer-interview {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 10px;
+            margin-top: 18px;
+            @extend %border-bottom;
+
+            .interview-img {
+                width: 47px;
+                height: 44px;
+            }
+
+            .offer-interview__middle {
+                margin: 0 12px;
+            }
+
+            p {
+                font-size: 12px;
+                line-height: 14px;
+                color: #606483;
+                margin-top: 4px;
+            }
+
+            .btn-to {
+                background: #F3F6F8;
+                border-radius: 8px;
+
+                img {
+                    padding: 15px 18px;
+                }
+            }
+        }
+    }
+    .main-content {
+        margin: 0;
+        margin-right: 56px;
+    }
+
+    
+}
